@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Obiettivo policy di pianificazione</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Obiettivi policy di pianificazione</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nome obiettivo policy di pianificazione</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

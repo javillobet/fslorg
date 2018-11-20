@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Κανόνας εργασίας πολιτικής προγραμματισμού</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Κανόνες εργασίας πολιτικής προγραμματισμού</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Κανόνας εργασίας πολιτικής προγραμματισμού --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Κανόνες εργασίας πολιτικής προγραμματισμού --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Κανόνας εργασίας πολιτικής προγραμματισμού --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Κανόνες εργασίας πολιτικής προγραμματισμού --></value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Όνομα κανόνα εργασίας πολιτικής προγραμμ</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

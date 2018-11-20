@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Objetivo de serviço</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Objetivos de serviço</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nome da meta de serviço</nameFieldLabel>
+</CustomObjectTranslation>

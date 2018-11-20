@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Solicitud de optimización de territorio</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Solicitudes de optimizaciones de territorios</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Número de solicitud de optimización de t</nameFieldLabel>
+</CustomObjectTranslation>

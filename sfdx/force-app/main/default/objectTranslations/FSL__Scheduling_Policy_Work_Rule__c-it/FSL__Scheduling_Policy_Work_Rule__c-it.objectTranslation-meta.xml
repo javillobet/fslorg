@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Regola di lavoro della policy di pianificazione</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Regole di lavoro della policy di pianificazione</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Nome regola di lavoro della policy di pi</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

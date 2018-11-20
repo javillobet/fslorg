@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Donnée d&#39;optimisation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Données d&#39;optimisation</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Numéro de données d&#39;optimisation</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

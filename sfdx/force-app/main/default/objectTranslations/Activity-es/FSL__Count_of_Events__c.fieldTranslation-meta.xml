@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Recuento de todos los eventos</help>
+    <label><!-- Count of Events --></label>
+    <name>FSL__Count_of_Events__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Optimisation Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Optimisation Requests</value>
+    </caseValues>
+    <nameFieldLabel>Optimisation Request Number</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

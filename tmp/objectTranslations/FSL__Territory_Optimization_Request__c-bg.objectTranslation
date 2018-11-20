@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Заявка за оптимизиране на територия</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Заявки за оптимизиране на територия</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Номер на заявката за оптимизация на тери</nameFieldLabel>
+</CustomObjectTranslation>

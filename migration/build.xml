@@ -1,0 +1,136 @@
+<project name="Salesforce Deployment" default="clean" basedir="." xmlns:sf="antlib:com.salesforce">
+	
+	<taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+       <classpath>
+           <pathelement location="../lib/ant-salesforce.jar" />                
+       </classpath>
+   </taskdef>
+
+   <property environment="env"/>
+
+   <taskdef name="merge" classname="com.jsuarez.packagecomparer.ant.MergeTask" classpath="../lib/PackageComparer-1.5.42.jar"/>
+
+	<property file="build.properties"/>
+	
+	<property name="deploy.path" value="../src"/>
+	<property name="delta.path" value="../migration/src"/>			
+
+	<property name="sf.unpackaged" value="temp_package.xml"/>
+	<property name="sf.unpackaged2" value="../src/package.xml"/>
+	<property name="target.path" value="../target"/>
+	<property name="work.path" value="../work"/>
+	<property name="sfdx" value="../sfdx"/>
+
+	<property name="retrive.org" value="retr"/>
+	<property name="deploy.org" value="depl"/>
+	<property name="cross.org" value="cross"/>
+
+	<property name="data.dir" value="../../data"/>
+
+        <condition property="sfdx_exec" value="sfdx.cmd">
+            <os family="windows"/>
+        </condition>
+
+        <condition property="sfdx_exec" value="sfdx">
+            <not>
+                <os family="windows"/>
+            </not>
+        </condition>
+
+    <target name="merge">
+        <merge 
+            packageFile="../src/package.xml"
+            outFile="deploymentPackage.xml"/>     
+
+        <copy file="deploymentPackage.xml" tofile="${deploy.path}/package.xml"/>
+    </target>    
+	
+	<target name="retrieve" depends="clean">
+		<echo message="RETRIEVE WITH USER"/>
+		<exec executable="bash">
+			<arg value="-c"/>
+			<arg value="sfdx force:org:list | grep ${cross.org}" />
+		</exec>
+		<mkdir dir="${deploy.path}"/>
+		<exec executable="${sfdx_exec}">
+			<arg line="force:mdapi:retrieve -u ${cross.org} -k ${sf.unpackaged} -r ${deploy.path}" />
+		</exec>		
+		<unzip src="${deploy.path}/unpackaged.zip" dest="${deploy.path}"/>
+		<move todir="${deploy.path}">
+		    <fileset dir="${deploy.path}/unpackaged"/>
+		</move>
+		<delete file="${deploy.path}/unpackaged.zip"/>
+		<delete file="${sf.unpackaged}"/>
+ 		<echo message="CREATE TEMP SFDX PROJECT"/>
+                <exec executable="${sfdx_exec}" dir="../">
+			<arg line="force:project:create --projectname sfdx_tmp" />
+		</exec>
+		<echo message="CONVERT METADATA TO SFDX SOURCE FORMAT"/>
+		<exec executable="${sfdx_exec}" dir="../sfdx_tmp">
+			<arg line="force:mdapi:convert  -r ${deploy.path}" />
+		</exec>
+		<echo message="MOVE SFDX SOURCE TO SFDX PROJECT STRUCTURE"/>
+		<move todir="${sfdx}/force-app/main/default">
+	     		 <fileset dir="../sfdx_tmp/force-app/main/default">
+	        		<include name="**/*"/>
+	      		</fileset>
+	    	</move>
+		<echo message="DELETE TEMPORARY SFDX FOLDERS"/>
+		<delete dir="../sfdx_tmp"/>
+		
+		<copy file="${deploy.path}/package.xml" tofile="temp_package.xml"/>
+		<echo message="Delete RETRIEVE dir"/>
+		<delete dir="${deploy.path}"/>
+		<mkdir dir="${deploy.path}"/>
+		<move file="temp_package.xml" tofile="${deploy.path}/package.xml"/>		
+		<echo message="Delete default vlocity sales process file"/>
+		<delete file="${sfdx}/force-app/main/default/objects/Opportunity/businessProcesses/vlocity_cmt__Vlocity Sales Process.businessProcess-meta.xml"/>
+	</target>
+
+	<target name="deploy">		
+		<exec executable="${sfdx_exec}" dir="${sfdx}">
+			<arg line="force:source:convert -d ${work.path}" />
+		</exec>
+
+		<mkdir dir="${target.path}"/>
+		<copy file="${sf.unpackaged2}" tofile="${target.path}/package.xml"/>
+
+		<exec executable="bash">
+			<arg value="-c"/>
+			<arg value="./object_cleaner_41.sh ${target.path}" />
+		</exec>
+
+		<exec executable="python">
+			<arg line="genDelta.py ${work.path} ${target.path}" />
+		</exec>
+
+		<delete dir="${work.path}" />
+
+		<echo message="DEPLOYING WITH USER ${cross.org}"/>
+
+		<exec executable="bash">
+			<arg value="-c"/>
+			<arg value="sfdx force:org:list | grep ${cross.org}" />
+		</exec>
+
+		<exec executable="${sfdx_exec}">
+			<arg line="force:mdapi:deploy -u ${cross.org} -d ${target.path} -w 30 -l ${env.TESTLEVEL}" />
+		</exec>
+		
+		<delete dir="${target.path}"/>
+	</target>	
+
+	<target name="login">
+		<exec executable="${sfdx_exec}">
+			<arg line="force:auth:web:login -r https://test.salesforce.com -a ${cross.org}" />
+		</exec> 
+	</target>
+	
+	<target name="clean">
+		<copy file="${deploy.path}/package.xml" tofile="temp_package.xml"/>
+		<echo message="Delete RETRIEVE dir"/>
+		<delete dir="${deploy.path}"/>
+	</target>	
+
+	
+</project>

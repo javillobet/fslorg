@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help>모든 이벤트 수</help>
+        <label><!-- Count of Events --></label>
+        <name>FSL__Count_of_Events__c</name>
+    </fields>
+    <fields>
+        <label><!-- Count of Tasks --></label>
+        <name>FSL__Count_of_Tasks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event Type --></label>
+        <name>FSL__Event_Type__c</name>
+        <picklistValues>
+            <masterLabel>Resource Absence</masterLabel>
+            <translation>자원 부재</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Appointment</masterLabel>
+            <translation>서비스 약속</translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>
