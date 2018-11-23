@@ -171,7 +171,7 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                 else:
                     templateName = member.text.split("/")[1]
                     templatePath = member.text.split("/")[0]
-                    print "\t\tTemplate name: " + templateName
+                    print "\tTemplate name: " + templateName
                     src = sourcedir + os.path.sep + currentFolder + os.path.sep + templatePath + os.path.sep + templateName + ".email"
                     src2 = src + "-meta.xml"
                     tgt = targetdir + os.path.sep + currentFolder + os.path.sep + templatePath + os.path.sep
@@ -192,6 +192,30 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                 shutil.copy(src,tgt)
                 shutil.copy(src2,tgt)
 
+        elif foundchild == "ApexPage":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tPage: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".page-meta.xml"
+                src2 = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".page"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tSrc2: "+src2
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+                shutil.copy(src2,tgt)
+        
+        elif foundchild == "ApexComponent":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\ApexComponent: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".component-meta.xml"
+                src2 = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".component"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tSrc2: "+src2
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+                shutil.copy(src2,tgt)
+
         elif foundchild == "CustomObject":
             for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
                 print "\tObject: " + member.text
@@ -201,6 +225,34 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                 print "\t\t\tTgt: "+tgt
                 shutil.copy(src,tgt)
         
+        elif foundchild == "CustomApplication":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\CustomApplication: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".app"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+        
+        elif foundchild == "CustomMetadata":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\CustomMetadata: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".md"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+    
+        elif foundchild == "ApprovalProcess":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\ApprovalProcess: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".approvalProcess"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        
         elif foundchild == "FlexiPage":
             for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
                 print "\tFlexiPage: " + member.text
@@ -209,6 +261,136 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                 print "\t\t\tSrc: "+src
                 print "\t\t\tTgt: "+tgt
                 shutil.copy(src,tgt)
+        
+        elif foundchild == "FlowDefinition":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tFlowDefinition: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".flowDefinition"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+    
+        elif foundchild == "Flows":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tFlow: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".flow"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "Group":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tGroup: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".group"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "Layout":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tLayout: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".layout"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+        
+        elif foundchild == "CustomObjectTranslation":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tCustomObjectTranslation: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".objectTranslation"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "PathAssistant":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tPathAssistant: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".pathAssistant"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "PermissionSet":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tPermissionSet: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".permissionset"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "Queue":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tQueue: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".queue"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "QuickAction":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tQuickAction: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".quickAction"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "RemoteSiteSetting":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tRemoteSiteSetting: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".remoteSite"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+    
+        elif foundchild == "Profile":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tProfile: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".profile"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+    
+        elif foundchild == "Role":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tRole: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".role"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "StaticResource":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tStaticResource: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".resource"
+                src2 = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".resource-meta.xml"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+                shutil.copy(src2,tgt)
+
+        elif foundchild == "ApexTrigger":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tTrigger: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".trigger"
+                src2 = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".trigger-meta.xml"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+                shutil.copy(src2,tgt)
 
         else:
             for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
