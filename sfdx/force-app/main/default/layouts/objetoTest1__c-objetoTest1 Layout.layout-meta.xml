@@ -14,6 +14,10 @@
                 <behavior>Required</behavior>
                 <field>Cuenta__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ApellidoPaterno__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
