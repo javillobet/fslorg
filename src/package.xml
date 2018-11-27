@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>SetPrueba__c.campito__c</members>
-        <members>objetoTest1__c.ApellidoPaterno__c</members>
-        <members>objetoTest1__c.Cuenta__c</members>
+        <members>Cuenta_Mayorista__c.Fecha_prevista_contrato__c</members>
         <name>CustomField</name>
     </types>
     <types>
-        <members>SetPrueba__c</members>
-        <members>objetoTest1__c</members>
+        <members>Cuenta_Mayorista__c</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>objetoTest1__c-objetoTest1 Layout</members>
+        <members>Cuenta_Mayorista__c-Cuenta Mayorista Layout</members>
         <name>Layout</name>
-    </types>
-    <types>
-        <members>objetoTest1__c.All</members>
-        <name>ListView</name>
     </types>
     <version>43.0</version>
 </Package>
