@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 import xml.etree.ElementTree as ET
 import shutil
 import sys
@@ -30,7 +31,7 @@ typeToDir = {"ApexClass": "classes",
              "ApexTrigger": "triggers",
 	         "AppMenu": "appMenus",
 	         "ApprovalProcess": "approvalProcesses",
-             "AssignmentRules": "assignmentRules",
+             "AssignmentRule": "assignmentRules",
              "AuraDefinitionBundle": "aura",
              "AutoResponseRules": "autoResponseRules",
 	         "Certificate": "certs",
@@ -50,6 +51,7 @@ typeToDir = {"ApexClass": "classes",
              "DelegateGroup": "delegateGroups",
              "DuplicateRule": "duplicateRules",
              "EmailTemplate": "email",
+             "EntitlementProcess": "entitlementProcesses",
              "EscalationRules": "escalationRules",
              "FlexiPage": "flexipages",
              "FlowDefinition": "flowDefinitions",
@@ -63,6 +65,7 @@ typeToDir = {"ApexClass": "classes",
 	         "Letterhead": "letterhead",
              "MatchingRule": "matchingRules",
 	         "ManagedTopics": "managedTopics",
+	         "MilestoneType": "milestoneTypes",
              "PathAssistant": "pathAssistants",
 	         "PermissionSet": "permissionsets",
              "Profile": "profiles",
@@ -101,7 +104,7 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
         if not os.path.exists(targetdir + os.path.sep + currentFolder):
             os.makedirs(targetdir + os.path.sep + currentFolder)
 
-        if foundchild == "AssignmentRules":
+        if foundchild == "AssignmentRule":
             caseRulesFound = False
             leadRulesFound = False
             for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
@@ -191,6 +194,40 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                 print "\t\t\tTgt: "+tgt
                 shutil.copy(src,tgt)
                 shutil.copy(src2,tgt)
+
+        elif foundchild == "MilestoneType":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tMilestone: " + member.text
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + ".milestoneType"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+        elif foundchild == "WorkflowRule":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tWorkflowRule: " + member.text
+		tipoObjWf=member.text.split('.')[0];
+		print "\tObjeto workflow rule: "+tipoObjWf
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + tipoObjWf + ".workflow"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+
+        elif foundchild == "WorkflowFieldUpdate":
+            for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
+                print "\tWorkflowFieldUpdate: " + member.text
+                tipoObjWf=member.text.split('.')[0];
+                print "\tObjeto workflow field update: "+tipoObjWf
+                src = sourcedir + os.path.sep + currentFolder + os.path.sep + tipoObjWf + ".workflow"
+                tgt = targetdir + os.path.sep + currentFolder + os.path.sep
+                print "\t\t\tSrc: "+src
+                print "\t\t\tTgt: "+tgt
+                shutil.copy(src,tgt)
+
+
 
         elif foundchild == "ApexPage":
             for member in child.findall('{http://soap.sforce.com/2006/04/metadata}members'):
@@ -408,7 +445,7 @@ for child in root.findall('{http://soap.sforce.com/2006/04/metadata}types'):
                     src = sourcedir + os.path.sep + currentFolder + os.path.sep + member.text + "*"
                     tgt = targetdir + os.path.sep + currentFolder + os.path.sep
 
-		    print "Source en glob: "+src
+		    print "Origen copia: "+src
                     for file1 in glob.glob(src):
                         print "\t\t\tcopy file: ", file1                     
                         shutil.copy(file1, tgt)
